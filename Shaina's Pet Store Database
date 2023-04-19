@@ -1,0 +1,43 @@
+--Create a Pet Store Database
+
+CREATE TABLE Pet_Store (id INTEGER PRIMARY KEY, item TEXT, section TEXT, price INTEGER, quantity INTEGER);
+
+INSERT INTO Pet_Store VALUES (1, "Hamster", "Small Pet Animals", 22.99, 10);
+INSERT INTO Pet_Store VALUES (2, "Guinea Pig", "Small Pet Animals", 49.99, 5);
+INSERT INTO Pet_Store VALUES (3, "Chinchilla", "Small Pet Animals", 199.99, 2);
+INSERT INTO Pet_Store VALUES (4, "Chameleon", "Reptiles", 79.99, 6);
+INSERT INTO Pet_Store VALUES (5, "Juvenile Fancy Ball Python", "Reptiles", 119.99, 5);
+INSERT INTO Pet_Store VALUES (6, "Lamb and Rice Forrmula Dry Dog Food", "Food", 43.88, 863);
+INSERT INTO Pet_Store VALUES (7, "Chicken in Gravy Entree Wet Cat Food", "Food", 3.66, 745);
+INSERT INTO Pet_Store VALUES (8, "Chihuahua", "Dog", 800, 3);
+INSERT INTO Pet_Store VALUES (9, "Beagle", "Dog", 1500, 2);
+INSERT INTO Pet_Store VALUES (10, "Scottish Fold", "Cat", 2000, 1);
+INSERT INTO Pet_Store VALUES (11, "Ragdoll", "Cat", 659, 3);
+INSERT INTO Pet_Store VALUES (12, "Soft Chew Joint Supplement", "Vitamins and Supplements", 11.87, 500);
+INSERT INTO Pet_Store VALUES (13, "Wild Caught Alaskna Salmon Oil", "Vitamins and Supplements", 15.19, 1350);
+INSERT INTO Pet_Store VALUES (14, "Double Door Wire Dog Crate", "Crates and Kennels", 59.99, 143);
+INSERT INTO Pet_Store VALUES (15, "Backpack Pet Carrier", "Crates and Kennels", 84.99, 324);
+
+-- displaying all the data
+SELECT * FROM Pet_Store;
+
+-- what are top 5 expensive items?
+SELECT item, price 
+FROM Pet_Store 
+ORDER by price desc 
+limit 5;
+
+-- what are the top 5 least expensive items?
+SELECT item, price 
+FROM Pet_Store 
+ORDER by price asc 
+limit 5;
+
+-- displaying the item with a quantity of 500 or greater in alphabetical order
+SELECT * FROM Pet_Store 
+WHERE quantity >= 500 
+ORDER BY item asc;
+
+-- what is the total quantity in the Pet Store
+SELECT SUM(Quantity) 
+FROM Pet_Store;
