@@ -1,0 +1,60 @@
+** In this SQL code, I'm creating two different database and querying it into one single data table about the author and the book they published.
+
+CREATE TABLE authors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    fullname TEXT, 
+    age INTEGER, 
+    marital_status TEXT, 
+    total_kids INTEGER);
+    
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Stephen King", 75, "married", 3);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("J.K. Rowling", 57, "married", 3);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Mark Twain", 74, "married", 4);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Roald Dahl", 74, "married", 5);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Amy Tan", 71, "married", 0);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("E.L. James", 60, "married", 2);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Pauli Coelho", 75, "married", 0);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Haruki Murakami", 74,"married", 0);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Emily Dickenson", 55, "single", 0);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("William Shakespeare",52, "married", 3);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Jane Austen", 41, "single", 0);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Leo Tolstoy", 82, "married", 13);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Virginia Woolf", 59, "married", 0);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("Agatha Christie", 85, "married", 1);
+INSERT INTO Authors (fullname, age, marital_status, total_kids) VALUES ("George Orwell",46, "married", 1);
+
+CREATE TABLE books (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    book_name TEXT, 
+    published_year INTEGER);
+    
+INSERT INTO books (book_name, published_year) VALUES ("The Stand", 1978);
+INSERT INTO books (book_name, published_year) VALUES ("Harry Potter and the Deathly Hallows", 2007);
+INSERT INTO books (book_name, published_year) VALUES ("Adventures of Huckleberry Finn", 1994);
+INSERT INTO books (book_name, published_year) VALUES ("Charlie and the Chocolate Factory", 1964);
+INSERT INTO books (book_name, published_year) VALUES ("The Joy Luck Club", 1989);
+INSERT INTO books (book_name, published_year) VALUES ("Fifty Shades of Grey", 2011);
+INSERT INTO books (book_name, published_year) VALUES ("The Alchemist", 1988);
+INSERT INTO books (book_name, published_year) VALUES ("Norwegian Wood", 1987);
+INSERT INTO books (book_name, published_year) VALUES ("Poems", 1890);
+INSERT INTO books (book_name, published_year) VALUES ("Romeo and Juliet", 1597);
+INSERT INTO books (book_name, published_year) VALUES ("Pride and Prejudice", 1813);
+INSERT INTO books (book_name, published_year) VALUES ("Anna Karenina", 1877);
+INSERT INTO books (book_name, published_year) VALUES ("To the Lighthouse", 1927);
+INSERT INTO books (book_name, published_year) VALUES ("And then there were none", 1939);
+INSERT INTO books (book_name, published_year) VALUES ("Nineteen Eighty-Four", 1949);
+
+SELECT * FROM Authors;
+SELECT * FROM books;
+
+* This shows me a data table of the full name of the author and the book name they published
+SELECT authors.fullname, books.book_name FROM authors
+JOIN books
+ON authors.id = books.id;
+
+* This shows me author's name, a book they wrote, and when did they published that book in chronological order
+SELECT authors.fullname, books.book_name, books.published_year FROM authors
+JOIN books
+ON authors.id = books.id
+ORDER by published_year asc;
+
