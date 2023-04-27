@@ -1,0 +1,56 @@
+** In this SQL, I'm querying a database that imitaties how a water tracker app stores and modifies data. 
+
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    name TEXT, 
+    age INTEGER, 
+    weight INTEGER, 
+    daily_activity TEXT);
+    
+INSERT INTO user (name, age, weight, daily_activity) VALUES ("Jasper", 18, 130, "medium");
+INSERT INTO user (name, age, weight, daily_activity) VALUES ("Bella", 35, 160, "low");
+INSERT INTO user (name, age, weight, daily_activity) VALUES ("Cullen", 26, 150, "active");
+INSERT INTO user (name, age, weight, daily_activity) VALUES ("Anne", 17, 105, "active");
+INSERT INTO user (name, age, weight, daily_activity) VALUES ("Mason", 50, 120, "low");
+
+CREATE TABLE water_intake (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    liquid TEXT,
+    amount INTEGER, 
+    unit TEXT);
+
+INSERT INTO water_intake (liquid, amount, unit) VALUES ("green tea", 30, "oz");
+INSERT INTO water_intake (liquid, amount, unit) VALUES ("water", 24, "oz");
+INSERT INTO water_intake (liquid, amount, unit) VALUES ("coconut water", 92, "oz");
+INSERT INTO water_intake (liquid, amount, unit) VALUES ("water", 85, "oz");
+INSERT INTO water_intake (liquid, amount, unit) VALUES ("water", 36, "oz");
+
+-- This displays one data table that has both the dataset tables User and Water Intake
+SELECT user.name, user.age, user.weight, user.daily_activity, water_intake.liquid, water_intake.amount, water_intake.unit FROM user
+JOIN water_intake
+ON user.id = water_intake.id;
+
+-- When a user changes the amount of their water intake 
+BEGIN TRANSACTION;
+UPDATE water_intake SET amount = 45
+WHERE id = 1;
+UPDATE water_intake SET amount = 32
+WHERE id = 2;
+COMMIT;
+
+SELECT user.name, user.age, user.weight, user.daily_activity, water_intake.liquid, water_intake.amount, water_intake.unit FROM user
+JOIN water_intake
+ON user.id = water_intake.id;
+
+-- When a user no longer wants to store their data in the app
+BEGIN TRANSACTION;
+DELETE FROM user WHERE id = 5;
+DELETE FROM water_intake WHERE id = 5;
+COMMIT;
+
+SELECT user.name, user.age, user.weight, user.daily_activity, water_intake.liquid, water_intake.amount, water_intake.unit FROM user
+JOIN water_intake
+ON user.id = water_intake.id;
+
+
+
