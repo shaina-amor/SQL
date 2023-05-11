@@ -1,4 +1,4 @@
-** In this SQL code, I'm creating two different database and querying it into one single data table about the author and the book they published.
+** In this SQL code, I'm creating two different database and querying it into one single data table that shows the author and the book they published.
 
 CREATE TABLE authors (
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -52,7 +52,7 @@ SELECT authors.fullname, books.book_name FROM authors
 JOIN books
 ON authors.id = books.id;
 
-* This shows me author's name, a book they wrote, and when did they published that book in chronological order
+* This shows me the author's name, a book they wrote, and the year they published that book in chronological order
 SELECT authors.fullname, books.book_name, books.published_year FROM authors
 JOIN books
 ON authors.id = books.id
